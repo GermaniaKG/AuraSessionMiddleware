@@ -1,0 +1,40 @@
+{
+	"name":        "germania-kg/aurasession-middleware",
+
+	"keywords": [ "aura.session", "session", "middleware", "callable"],
+
+	"type":        "library",
+	"license":     "MIT",
+
+	"authors": [
+		{
+			"name":  "Carsten Witt",
+			"email": "carstenwitt@germania-kg.de",
+			"role":  "Developer"
+		}
+	],
+
+	"autoload": {
+			"psr-4": {
+					"Germania\\AuraSessionMiddleware\\": "src/"
+			}
+	},
+
+  "autoload-dev": {
+      "psr-4": { "tests\\": "tests/src" }
+  },
+
+	"require": {
+			"aura/session": "^2.1",
+			"psr/log": "^1.0",
+			"psr/http-message": "^1.0"
+	},
+
+	"require-dev": {
+
+		"slim/slim": "^3.0",
+		"satooshi/php-coveralls": "^1.0",
+		"phpunit/phpunit": "^5.2"
+	}
+
+}
