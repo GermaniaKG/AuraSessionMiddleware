@@ -42,8 +42,8 @@ Clone repo, use [Git Flow](https://github.com/nvie/gitflow). Work on *develop* b
 
 ```bash
 # Clone Repo
-$ git clone git@github.com:GermaniaKG/AuraSessionMiddleware.git aurasession-middelware
-$ cd aurasession-middelware
+$ git clone git@github.com:GermaniaKG/AuraSessionMiddleware.git aurasession-middleware
+$ cd aurasession-middleware
 $ composer install
 ```
 
