@@ -2,6 +2,9 @@
 
 **Middleware to inject [Aura.Session Segments](https://github.com/auraphp/Aura.Session) into [PSR-7 ServerRequests](http://www.php-fig.org/psr/psr-7/#3-2-psr-http-message-requestinterface).**
 
+[![Build Status](https://travis-ci.org/GermaniaKG/AuraSessionMiddleware.svg?branch=master)](https://travis-ci.org/GermaniaKG/AuraSessionMiddleware)
+
+
 ##Installation
 
 ```bash
@@ -42,8 +45,8 @@ Clone repo, use [Git Flow](https://github.com/nvie/gitflow). Work on *develop* b
 
 ```bash
 # Clone Repo
-$ git clone git@github.com:GermaniaKG/AuraSessionMiddleware.git aurasession-middelware
-$ cd aurasession-middelware
+$ git clone git@github.com:GermaniaKG/AuraSessionMiddleware.git aurasession-middleware
+$ cd aurasession-middleware
 $ composer install
 ```
 
