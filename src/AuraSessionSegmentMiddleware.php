@@ -21,7 +21,10 @@ class AuraSessionSegmentMiddleware
      */
     public $logger;
 
-
+    /**
+     * @var string
+     */
+    public $request_attribute_name = 'session';
 
 
     /**
@@ -32,6 +35,33 @@ class AuraSessionSegmentMiddleware
     {
         $this->segment   = $segment;
         $this->logger    = $logger ?: new NullLogger;
+    }
+
+
+    /**
+     * Sets the PSR7 Request attribute name for the Aura.Session Segment.
+     * Must be called before middelware invokation!
+     *
+     * @param  string $request_attribute_name
+     * @return self   Fluent Interface
+     */
+    public function setRequestAttributeName( $request_attribute_name )
+    {
+        $this->request_attribute_name = $request_attribute_name;
+        $this->logger->info("Set PS7 Request attribute name for Aura.Session segment", [
+            'attribute_name' => $request_attribute_name
+        ]);
+        return $this;
+    }
+
+    /**
+     * Returns the PSR7 Request attribute name for the Aura.Session Segment.
+     *
+     * @return string
+     */
+    public function getRequestAttributeName( )
+    {
+        return $this->request_attribute_name;
     }
 
 
@@ -51,7 +81,9 @@ class AuraSessionSegmentMiddleware
         // Add attribute to Request
         // This will be available within any follow-up middleware and routes.
         $this->logger->info("Before Route: Inject Aura.Session segment to Request");
-        $request = $request->withAttribute('session', $this->segment);
+
+        $request_attribute_name = $this->getRequestAttributeName();
+        $request = $request->withAttribute($request_attribute_name, $this->segment);
 
 
         // ---------------------------------------
