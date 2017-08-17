@@ -40,6 +40,22 @@ class AuraSessionSegmentMiddleware
 
 
     /**
+     * Sets the PSR7 Request attribute name for the Aura.Session Segment.
+     * Must be called before middelware invokation!
+     *
+     * @param string $request_attribute_name
+     */
+    public function setRequestAttributeName( $request_attribute_name )
+    {
+        $this->request_attribute_name = $request_attribute_name;
+        $this->logger->info("Set PS7 Request attribute name for Aura.Session segment", [
+            'attribute_name' => $request_attribute_name
+        ]);
+        return $this;
+    }
+
+
+    /**
      * @param  Psr\Http\Message\ServerRequestInterface  $request  PSR7 request
      * @param  Psr\Http\Message\ResponseInterface       $response PSR7 response
      * @param  callable                                 $next     Next middleware
