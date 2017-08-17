@@ -23,6 +23,7 @@ class PimpleServiceProvider implements ServiceProviderInterface
      */
     public $request_attribute_name;
 
+
     /**
      * @var LoggerInterface
      */
@@ -41,7 +42,6 @@ class PimpleServiceProvider implements ServiceProviderInterface
         $this->request_attribute_name = $request_attribute_name;
         $this->logger = $logger ?: new NullLogger;
     }
-
 
 
     /**
