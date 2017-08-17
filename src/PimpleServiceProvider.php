@@ -64,7 +64,7 @@ class PimpleServiceProvider implements ServiceProviderInterface
          * @return  \Psr\Log\LoggerInterface
          */
         $dic['Session.Logger'] = function( $dic ) {
-            $this->logger;
+            return $this->logger;
         };
 
 
