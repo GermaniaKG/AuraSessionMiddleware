@@ -1,4 +1,4 @@
-#AuraSessionMiddleware
+# AuraSessionMiddleware
 
 **Middleware to inject [Aura.Session Segments](https://github.com/auraphp/Aura.Session) into [PSR-7 ServerRequests](http://www.php-fig.org/psr/psr-7/#3-2-psr-http-message-requestinterface).**
 
@@ -8,13 +8,13 @@
 
 
 
-##Installation
+## Installation
 
 ```bash
 $ composer require germania-kg/aurasession-middleware
 ```
 
-##Usage
+## Usage
 
 ```php
 <?php
@@ -30,7 +30,8 @@ $mw = new AuraSessionSegmentMiddleware( $segment );
 $mw = new AuraSessionSegmentMiddleware( $segment, $logger );
 ```
 
-###Inside your routes
+
+### Inside your routes
 ```php
 <?php
 $app = new \Slim\App();
@@ -41,8 +42,28 @@ $app->get('/books/{id}', function ($request, $response, $args) {
 });
 ```
 
+### Set PSR7 Request attribute name
 
-##Development and testing
+Per default, the SessionSegment is stored as the PSR7 Request attribute named `session`.
+You can set a custom name right after instantiation, i.e. before the middleware is invoked:
+
+```php
+<?php
+$mw = new AuraSessionSegmentMiddleware( $segment );
+
+// "session" per default
+echo $mv->getRequestAttributeName( );
+
+// Choose another one...
+$mv->setRequestAttributeName( "custom_name" );
+
+// Inside route:
+$session = $request->getAttribute("custom_name");
+```
+
+
+
+## Development and testing
 
 Clone repo, use [Git Flow](https://github.com/nvie/gitflow). Work on *develop* branch.
 
