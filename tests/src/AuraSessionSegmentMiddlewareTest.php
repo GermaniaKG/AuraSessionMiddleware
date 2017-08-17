@@ -55,6 +55,8 @@ class AuraSessionSegmentMiddlewareTest extends \PHPUnit_Framework_TestCase
 
         // Evaluate
         $this->assertEquals( (string) $response->getBody(), $session_value );
+
+        $this->assertTrue( $request->hasAttribute('session'));
         return $sut;
     }
 
