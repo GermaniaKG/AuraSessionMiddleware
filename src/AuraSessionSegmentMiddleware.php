@@ -27,7 +27,6 @@ class AuraSessionSegmentMiddleware
     public $request_attribute_name = 'session';
 
 
-
     /**
      * @param SegmentInterface        $segment  Aura.Session Segment
      * @param LoggerInterface|null    $logger   Optional: PSR-3 Logger
@@ -60,7 +59,7 @@ class AuraSessionSegmentMiddleware
      *
      * @return string
      */
-    public function getRequestAttributeName( $request_attribute_name )
+    public function getRequestAttributeName( )
     {
         return $this->request_attribute_name;
     }
