@@ -74,8 +74,8 @@ class PimpleServiceProvider implements ServiceProviderInterface
          * @return Callable|AuraSessionSegmentMiddleware
          */
         $dic['Session.Middleware'] = function( $dic ) {
-            $session = $dic->get('Session');
-            $logger  = $dic->get('Session.Logger');
+            $session = $dic['Session'];
+            $logger  = $dic['Session.Logger'];
 
             $middleware = new AuraSessionSegmentMiddleware( $session, $logger );
             $middleware->setRequestAttributeName( $this->request_attribute_name );
