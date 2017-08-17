@@ -45,6 +45,7 @@ class PimpleServiceProvider implements ServiceProviderInterface
 
 
     /**
+     * @param  Container $dic Pimple Container
      * @implements ServiceProviderInterface
      */
     public function register(Container $dic)
@@ -69,6 +70,9 @@ class PimpleServiceProvider implements ServiceProviderInterface
 
 
 
+        /**
+         * @return Callable|AuraSessionSegmentMiddleware
+         */
         $dic['Session.Middleware'] = function( $dic ) {
             $session = $dic->get('Session');
             $logger  = $dic->get('Session.Logger');
