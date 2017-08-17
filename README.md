@@ -62,6 +62,34 @@ $session = $request->getAttribute("custom_name");
 ```
 
 
+## Pimple Service Provider
+
+```php
+<?php
+use Germania\AuraSessionMiddleware\PimpleServiceProvider;
+use Aura\Session\SegmentInterface;
+use Psr\Log\LoggerInterface;
+
+// have your Pimple DIC ready, and optionally a PSR3 Logger:
+$sp = new PimpleServiceProvider("session", "request_attr");
+$sp = new PimpleServiceProvider("session", "request_attr", $psr3_logger);
+$sp->register( $dic );
+
+// Grab your services
+$yes = $dic['Session'] instanceOf SegmentInterface;
+$yes = $dic['Session.Logger'] instanceOf LoggerInterface;
+$yes = is_callable( $dic['Session.Middleware'] );
+```
+
+### Use with Slim Framework:
+
+```php
+<?php
+$app = new \Slim\App;
+$app->add( $dic['Session.Middleware'] );
+```
+
+
 
 ## Development and testing
 
