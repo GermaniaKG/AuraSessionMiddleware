@@ -16,14 +16,13 @@ use Aura\Session\Segment;
 class AuraSessionSegmentMiddlewareTest extends \PHPUnit_Framework_TestCase
 {
 
-    /**
-     * @dataProvider provideSessionVars
-     */
-    public function testInstantiation( $session_key, $session_value )
+    public $env;
+
+    public function setUp()
     {
         // Mock Env as seen on Slim3 docs:
         // http://www.slimframework.com/docs/cookbook/environment.html
-        $env = Environment::mock([
+        $this->env = Environment::mock([
             'REQUEST_METHOD' => 'GET',
             'REQUEST_URI' => '/foo/bar',
             'QUERY_STRING' => 'abc=123&foo=bar',
@@ -31,6 +30,13 @@ class AuraSessionSegmentMiddlewareTest extends \PHPUnit_Framework_TestCase
             'CONTENT_TYPE' => 'application/json;charset=utf8',
             'CONTENT_LENGTH' => 15
         ]);
+    }
+
+    /**
+     * @dataProvider provideSessionVars
+     */
+    public function testInstantiation( $session_key, $session_value )
+    {
 
         // Build Middleware constructor arguments
         $segment_mock = $this->prophesize( SegmentInterface::class );
@@ -39,7 +45,7 @@ class AuraSessionSegmentMiddlewareTest extends \PHPUnit_Framework_TestCase
 
 
         // Build "inner" Middleware arguments
-        $request  = Request::createFromEnvironment( $env );
+        $request  = Request::createFromEnvironment( $this->env );
         $response = new Response;
 
 
@@ -55,10 +61,22 @@ class AuraSessionSegmentMiddlewareTest extends \PHPUnit_Framework_TestCase
 
         // Evaluate
         $this->assertEquals( (string) $response->getBody(), $session_value );
-
-        $this->assertTrue( $request->hasAttribute('session'));
         return $sut;
     }
+
+
+    public function testRequestAttributeNameInterceptors()
+    {
+        $segment_mock = $this->prophesize( SegmentInterface::class );
+        $segment = $segment_mock->reveal();
+
+        $sut = new AuraSessionSegmentMiddleware( $segment );
+
+        $value = "abcdef";
+        $this->assertEquals($value, $sut->setRequestAttributeName($value)->getRequestAttributeName());
+
+    }
+
 
     public function provideSessionVars()
     {
