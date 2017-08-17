@@ -21,6 +21,10 @@ class AuraSessionSegmentMiddleware
      */
     public $logger;
 
+    /**
+     * @var string
+     */
+    public $request_attribute_name = 'session';
 
 
 
@@ -51,7 +55,7 @@ class AuraSessionSegmentMiddleware
         // Add attribute to Request
         // This will be available within any follow-up middleware and routes.
         $this->logger->info("Before Route: Inject Aura.Session segment to Request");
-        $request = $request->withAttribute('session', $this->segment);
+        $request = $request->withAttribute($this->request_attribute_name, $this->segment);
 
 
         // ---------------------------------------
