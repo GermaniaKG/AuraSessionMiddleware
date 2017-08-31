@@ -5,7 +5,7 @@
 [![Build Status](https://travis-ci.org/GermaniaKG/AuraSessionMiddleware.svg?branch=master)](https://travis-ci.org/GermaniaKG/AuraSessionMiddleware)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/GermaniaKG/AuraSessionMiddleware/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/GermaniaKG/AuraSessionMiddleware/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/GermaniaKG/AuraSessionMiddleware/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/GermaniaKG/AuraSessionMiddleware/?branch=master)
-
+[![Build Status](https://scrutinizer-ci.com/g/GermaniaKG/Permissions/badges/build.png?b=master)](https://scrutinizer-ci.com/g/GermaniaKG/Permissions/build-status/master)
 
 
 ## Installation
