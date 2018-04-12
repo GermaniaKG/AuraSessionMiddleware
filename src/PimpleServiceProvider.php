@@ -36,7 +36,7 @@ class PimpleServiceProvider implements ServiceProviderInterface
      * @param string $request_attribute_name  PSR7 Request attribute name, defaults to "session"
      * @param LoggerInterface $logger         Optional: PSR3 Logger instance
      */
-    public function __construct( $session_name, $request_attribute_name = "session", LoggerInterface $logger = null )
+    public function __construct( $session_name = null, $request_attribute_name = "session", LoggerInterface $logger = null )
     {
         $this->session_name = $session_name ?: get_class($this);
         $this->request_attribute_name = $request_attribute_name;
@@ -51,14 +51,21 @@ class PimpleServiceProvider implements ServiceProviderInterface
     public function register(Container $dic)
     {
 
+        $dic['Session.Name'] = function( $dic ) {
+            return $this->session_name;
+        };
+
+
         /**
          * @return Aura SessionSegment
          */
         $dic['Session'] = function( $dic ) {
             $session_factory = new SessionFactory;
             $session = $session_factory->newInstance( $_COOKIE );
-            return $session->getSegment( $this->session_name );
+            $session_name = $dic['Session.Name'];
+            return $session->getSegment( $session_name );
         };
+
 
 
         /**
