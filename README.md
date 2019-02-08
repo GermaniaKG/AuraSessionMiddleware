@@ -2,13 +2,15 @@
 
 **Middleware to inject [Aura.Session Segments](https://github.com/auraphp/Aura.Session) into [PSR-7 ServerRequests](http://www.php-fig.org/psr/psr-7/#3-2-psr-http-message-requestinterface).**
 
-[![Build Status](https://travis-ci.org/GermaniaKG/AuraSessionMiddleware.svg?branch=master)](https://travis-ci.org/GermaniaKG/AuraSessionMiddleware)
+[![Packagist](https://img.shields.io/packagist/v/germania-kg/aurasession-middleware.svg?style=flat)](https://packagist.org/packages/germania-kg/aurasession-middleware)
+[![PHP version](https://img.shields.io/packagist/php-v/germania-kg/aurasession-middleware.svg)](https://packagist.org/packages/germania-kg/aurasession-middleware)
+[![Build Status](https://img.shields.io/travis/GermaniaKG/AuraSessionMiddleware.svg?label=Travis%20CI)](https://travis-ci.org/GermaniaKG/AuraSessionMiddleware)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/GermaniaKG/AuraSessionMiddleware/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/GermaniaKG/AuraSessionMiddleware/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/GermaniaKG/AuraSessionMiddleware/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/GermaniaKG/AuraSessionMiddleware/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/GermaniaKG/Permissions/badges/build.png?b=master)](https://scrutinizer-ci.com/g/GermaniaKG/Permissions/build-status/master)
+[![Build Status](https://scrutinizer-ci.com/g/GermaniaKG/AuraSessionMiddleware/badges/build.png?b=master)](https://scrutinizer-ci.com/g/GermaniaKG/AuraSessionMiddleware/build-status/master)
 
 
-## Installation
+## Installation with Composer
 
 ```bash
 $ composer require germania-kg/aurasession-middleware
@@ -91,20 +93,20 @@ $app->add( $dic['Session.Middleware'] );
 
 
 
-## Development and testing
-
-Clone repo, use [Git Flow](https://github.com/nvie/gitflow). Work on *develop* branch.
+## Development
 
 ```bash
-# Clone Repo
-$ git clone git@github.com:GermaniaKG/AuraSessionMiddleware.git aurasession-middleware
-$ cd aurasession-middleware
+$ git clone https://github.com/GermaniaKG/AuraSessionMiddleware.git
+$ cd AuraSessionMiddleware
 $ composer install
 ```
 
-For testing, copy PHPUnit configuration file and customize if needed.
+## Unit tests
+
+Either copy `phpunit.xml.dist` to `phpunit.xml` and adapt to your needs, or leave as is. Run [PhpUnit](https://phpunit.de/) test or composer scripts like this:
 
 ```bash
-$ cp phpunit.xml.dist phpunit.xml
-$ phpunit
+$ composer test
+# or
+$ vendor/bin/phpunit
 ```
