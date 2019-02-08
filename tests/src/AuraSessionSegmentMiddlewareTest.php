@@ -13,12 +13,12 @@ use Aura\Session\Segment;
 /**
  * @coversDefaultClass \Germania\Authorization\Authorization
  */
-class AuraSessionSegmentMiddlewareTest extends \PHPUnit_Framework_TestCase
+class AuraSessionSegmentMiddlewareTest extends \PHPUnit\Framework\TestCase
 {
 
     public $env;
 
-    public function setUp()
+    public function setUp() : void
     {
         // Mock Env as seen on Slim3 docs:
         // http://www.slimframework.com/docs/cookbook/environment.html

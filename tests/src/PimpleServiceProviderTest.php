@@ -10,12 +10,12 @@ use Psr\Log\NullLogger;
 
 use Aura\Session\SegmentInterface;
 
-class PimpleServiceProviderTest extends \PHPUnit_Framework_TestCase
+class PimpleServiceProviderTest extends \PHPUnit\Framework\TestCase
 {
 
     public $logger_mock;
 
-    public function setUp()
+    public function setUp() : void
     {
         $logger = $this->prophesize(LoggerInterface::class);
         $this->logger_mock = $logger->reveal();
