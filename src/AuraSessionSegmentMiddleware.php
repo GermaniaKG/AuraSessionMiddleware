@@ -6,9 +6,10 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Aura\Session\SegmentInterface;
+use Psr\Http\Server\RequestHandlerInterface;
+use Psr\Http\Server\MiddlewareInterface;
 
-
-class AuraSessionSegmentMiddleware
+class AuraSessionSegmentMiddleware implements MiddlewareInterface
 {
 
     /**
@@ -63,6 +64,36 @@ class AuraSessionSegmentMiddleware
     {
         return $this->request_attribute_name;
     }
+
+
+
+    public function process( Request $request, RequestHandlerInterface $handler) : Response
+    {
+        // ---------------------------------------
+        //  1. Set session attribute
+        // ---------------------------------------
+
+        // Add attribute to Request
+        // This will be available within any follow-up middleware and routes.
+        $this->logger->info("Before Route: Inject Aura.Session segment to Request");
+
+        $request_attribute_name = $this->getRequestAttributeName();
+        $request = $request->withAttribute($request_attribute_name, $this->segment);
+
+
+        // ---------------------------------------
+        //  2. Call next middleware.
+        // ---------------------------------------
+        $response = $handler->handle($request);
+
+        // ---------------------------------------
+        // 3. Return response
+        // ---------------------------------------
+        $this->logger->debug("After Route: noop");
+        return $response;
+
+    }
+
 
 
     /**
